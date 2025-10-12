@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Bank - Menú</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between">
+    <!-- Encabezado -->
+    <header class="flex justify-between items-center p-6">
+      <!-- Logo -->
+      <div class="flex items-center space-x-3">
+        <img
+          src="../images/pokemon-bank-logo.png"
+          alt="Pokémon Logo"
+          class="w-44"
+        />
+      </div>
+
+      <!-- Usuario -->
+      <div class="flex items-center space-x-3">
+        <img src="../images/pokeball.png" alt="Pokeball" class="w-12 h-12" />
+        <div class="text-right">
+          <p class="text-[#2b5ea3] font-semibold">Arron Hernandez</p>
+          <p class="text-[#2b5ea3] text-sm font-semibold">0034840280021393</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="flex flex-col items-center justify-center flex-grow">
+      <div class="grid grid-cols-2 gap-10">
+        <!-- Botones -->
+        <a
+          href="retiro.html"
+          class="w-56 py-4 bg-[#ffb300] hover:bg-[#ffc107] rounded-md text-white font-semibold text-lg shadow-md transition flex items-center justify-center"
+        >
+          Retirar
+        </a>
+
+        <a
+          href="saldo.html"
+          class="w-56 py-4 bg-[#ffb300] hover:bg-[#ffc107] rounded-md text-white font-semibold text-lg shadow-md transition flex items-center justify-center"
+        >
+          Consultar saldo
+        </a>
+
+        <a
+          href="depositar.html"
+          class="w-56 py-4 bg-[#ffb300] hover:bg-[#ffc107] rounded-md text-white font-semibold text-lg shadow-md transition flex items-center justify-center"
+        >
+          Depositar
+        </a>
+
+        <a
+          href="pago.html"
+          class="w-56 py-4 bg-[#ffb300] hover:bg-[#ffc107] rounded-md text-white font-semibold text-lg shadow-md transition flex items-center justify-center"
+        >
+          Pago de servicios
+        </a>
+      </div>
+    </main>
+
+    <footer class="flex justify-end p-8">
+      <button class="text-[#2b5ea3] hover:text-[#1e3a8a] transition">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-8 h-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"
+          />
+        </svg>
+      </button>
+    </footer>
+  </body>
+</html>

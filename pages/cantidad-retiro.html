@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantidad de retiro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between">
+   <div class="flex flex-col items-center justify-center min-h-screen bg-[#FDF8F6] px-6">
+  <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-8 text-center">
+    Por favor seleccione la cantidad.
+  </h2>
+
+  <div class="flex flex-col md:flex-row items-center justify-center gap-20">
+    <!-- Columna izquierda -->
+    <div class="flex flex-col gap-5">
+      <a
+        href="monto10.html"
+        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 w-40 rounded-md shadow-md transition text-center"
+      >
+        $10
+      </a>
+      <a
+        href="monto20.html"
+        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 w-40 rounded-md shadow-md transition text-center"
+      >
+        $20
+      </a>
+      <a
+        href="monto30.html"
+        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 w-40 rounded-md shadow-md transition text-center"
+      >
+        $30
+      </a>
+    </div>
+
+    <!-- Imagen central -->
+    <img
+      src="../images/charmander.png"
+      alt="Charmander"
+      class="w-56 md:w-64 object-contain"
+    />
+
+    <!-- Columna derecha -->
+    <div class="flex flex-col gap-5">
+      <a
+        href="monto100.html"
+        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 w-40 rounded-md shadow-md transition text-center"
+      >
+        $100
+      </a>
+      <a
+        href="monto200.html"
+        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 w-40 rounded-md shadow-md transition text-center"
+      >
+        $200
+      </a>
+      <a
+        href="./otra-cantidad.html"
+        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 w-40 rounded-md shadow-md transition text-center"
+      >
+        $ Otro
+      </a>
+    </div>
+  </div>
+
+  <!-- Flecha de retroceso -->
+  <div class="mt-10 flex justify-end w-full max-w-3xl">
+    <a
+      href="seleccionar-cuenta.html"
+      class="text-orange-500 hover:text-orange-600 text-2xl rotate-180"
+    >
+      ↩
+    </a>
+  </div>
+</div>
+
+</body>
+</html>
