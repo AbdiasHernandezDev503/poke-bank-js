@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokémon Bank - Consulta de saldo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between">
+  <header class="flex justify-between items-start p-2"></header>
+      
+    <!-- Cinta de título -->
+    <div class="px-6 md:px-12 lg:px-16">
+      <div class="w-full rounded-xl bg-[#ffb300] text-white font-extrabold text-center py-3 uppercase">
+        Consulta de saldo
+      </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <main class="flex flex-col flex-grow px-6 md:px-12 lg:px-16 pt-6">
+      <!-- Balance y última actualización -->
+      <section class="mb-6">
+        <h1 class="text-4xl md:text-5xl font-extrabold">$1,250.50</h1>
+        <p id="ultima-actualizacion" class="text-gray-600 mt-1">
+          Última actualización: 8 oct 2025, 23:22
+        </p>
+      </section>
+
+      <!-- Tarjetas de resumen -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+        <!-- Ingresos -->
+        <div class="bg-white/90 rounded-xl shadow-md px-5 py-4">
+          <p class="text-[#ffb300] font-bold mb-1">Ingresos del mes</p>
+          <p class="text-2xl font-extrabold">$2,100.00</p>
+        </div>
+
+        <!-- Egresos -->
+        <div class="bg-white/90 rounded-xl shadow-md px-5 py-4">
+          <p class="text-[#ffb300] font-bold mb-1">Egresos del mes</p>
+          <p class="text-2xl font-extrabold">$849.50</p>
+        </div>
+
+        <!-- Disponible -->
+        <div class="bg-white/90 rounded-xl shadow-md px-5 py-4">
+          <p class="text-[#ffb300] font-bold mb-1">Disponible</p>
+          <p class="text-2xl font-extrabold">$1,250.50</p>
+        </div>
+      </section>
+
+      <!-- Sección inferior: Pokémon + botones -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-0 items-center">
+        <!-- Charizard + caption -->
+        <div class="flex flex-col items-center">
+          <img
+            src="../images/charizart.png"
+            alt="Charizard cuidando tu dinero"
+            class="max-w-[260px] w-full select-none"
+            draggable="false"
+          />
+          <p class="mt-2 text-[#2b5ea3] font-extrabold">Cuidamos tu dinero</p>
+        </div>
+
+        <!-- Botones -->
+        <div class="flex flex-col items-start lg:items-center gap-5">
+          <a
+            href="historial.html"
+            class="inline-block bg-[#ffb300] hover:bg-[#ffc107] text-white font-semibold rounded-md shadow-md transition px-6 py-3 text-center min-w-[260px]"
+          >
+            Historial de transacciones
+          </a>
+
+          <a
+            href="grafico.html"
+            class="inline-block bg-[#ffb300] hover:bg-[#ffc107] text-white font-semibold rounded-md shadow-md transition px-6 py-3 text-center min-w-[260px]"
+          >
+            Gráfico de transacciones
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer (volver al menú) -->
+    <footer class="flex justify-end p-6 md:p-8 mt-[-40px]">
+      <a href="inicio.html" class="text-[#2b5ea3] hover:text-[#1e3a8a] transition" title="Volver al menú">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+        </svg>
+      </a>
+    </footer>
+
+    
+  </body>
+</html>
