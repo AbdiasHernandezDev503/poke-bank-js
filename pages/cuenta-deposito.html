@@ -7,23 +7,20 @@
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between">
+<body class="bg-[#F4EFEB] h-screen flex flex-col justify-center items-center overflow-hidden relative">
 
-  <!-- Contenedor principal -->
-  <div class="flex flex-col items-center justify-center min-h-screen  px-8">
+  <!-- Usuario -->
+  <div class="absolute top-6 right-10 flex items-center space-x-3">
+    <img src="../images/pokeball.png" alt="Pokeball" class="w-12 h-12" />
+    <div class="text-right">
+      <p class="text-[#2b5ea3] font-semibold">Arron Hernandez</p>
+      <p class="text-[#2b5ea3] text-sm font-semibold">0034840280021393</p>
+    </div>
+  </div>
 
-   <!-- Usuario -->
-        <div class="absolute top-6 right-10 flex items-center space-x-3">
-        <img src="../images/pokeball.png" alt="Pokeball" class="w-12 h-12" />
-        <div class="text-right">
-          <p class="text-[#2b5ea3] font-semibold">Arron Hernandez</p>
-          <p class="text-[#2b5ea3] text-sm font-semibold">0034840280021393</p>
-        </div>
-      </div>
-    </header>
-
-    <!-- Texto principal -->
-    <h2 class="text-lg md:text-xl font-semibold text-[#3952A5] mb-10 text-center">
+  <!-- Contenido principal centrado -->
+  <div class="flex flex-col items-center justify-center text-center">
+    <h2 class="text-lg md:text-xl font-semibold text-[#3952A5] mb-10">
       Ingrese la cuenta a la cual desea depositar.
     </h2>
 
@@ -43,9 +40,9 @@
     </a>
   </div>
 
-  <!-- Flecha fija abajo a la derecha -->
-  <<a href="../index.html"
-     class="text-[#2ECC71] hover:text-[#27AE60] transition fixed bottom-8 right-8">
+  <!-- Flecha verde fija abajo a la derecha -->
+  <a href="../index.html"
+     class="text-[#2ECC71] hover:text-[#27AE60] transition absolute bottom-6 right-6">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
          stroke-width="2.5" stroke="currentColor" class="w-8 h-8 rotate-180">
       <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
