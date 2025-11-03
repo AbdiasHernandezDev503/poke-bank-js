@@ -1,49 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retiro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Retiro - Seleccionar tipo de cuenta</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between">
-    <div class="flex items-center justify-center min-h-screen bg-[#FDF8F6] px-6">
-  <div class="flex flex-col md:flex-row items-center gap-10 max-w-4xl">
+<body class="bg-[#F4EFEB] min-h-screen flex items-center justify-center px-6">
+
+  <div class="flex flex-col md:flex-row items-center gap-10 max-w-5xl w-full justify-center">
+
     <!-- Imagen -->
     <img 
       src="../images/ash-pikachu.png" 
       alt="Entrenador Pokémon" 
-      class="w-52 md:w-60 object-contain"
+      class="w-56 sm:w-64 md:w-72 object-contain"
     />
 
-    <!-- Contenido de texto y botones -->
+    <!-- Contenido -->
     <div class="text-center md:text-left">
-      <h2 class="text-lg md:text-xl font-semibold text-gray-800 mb-6">
+      <h2 class="text-lg sm:text-xl md:text-2xl font-semibold text-[#2D3250] mb-8 leading-relaxed">
         Por favor seleccione el tipo de cuenta <br />
         para realizar su transacción.
       </h2>
 
-      <div class="flex flex-col gap-4">
+      <!-- Botones -->
+      <div class="flex flex-col gap-5 w-full max-w-xs mx-auto md:mx-0">
         <a
-        href="cantidad-retiro.html"
-        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-md shadow-md transition text-center"
-      > Corriente
-      </a>
+          href="cantidad-retiro.html"
+          class="bg-[#FF7A00] hover:bg-[#FF8C1A] text-white font-bold py-3 sm:py-4 rounded-lg text-lg text-center shadow-md transition-transform transform hover:scale-105"
+        >
+          Corriente
+        </a>
+
         <a
-        href="cantidad-retiro.html"
-        class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-md shadow-md transition text-center"
-      > Ahorro
-      </a>
+          href="cantidad-retiro.html"
+          class="bg-[#FF7A00] hover:bg-[#FF8C1A] text-white font-bold py-3 sm:py-4 rounded-lg text-lg text-center shadow-md transition-transform transform hover:scale-105"
+        >
+          Ahorro
+        </a>
       </div>
 
-      <!-- Flecha de regreso -->
-      <div class="mt-6 flex justify-end">
-        <button class="text-orange-500 hover:text-orange-600 text-2xl rotate-180">
-          ↩
-        </button>
+      <!-- Botón de regreso -->
+      <div class="mt-10 flex justify-center md:justify-end">
+        <a href="inicio.html" 
+           class="flex items-center justify-center w-12 h-12 rounded-full border border-orange-400 text-orange-500 hover:bg-orange-50 hover:text-orange-600 transition shadow-md">
+          <!-- Ícono flecha -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 rotate-180">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </a>
       </div>
     </div>
   </div>
-</div>
+
 </body>
 </html>
