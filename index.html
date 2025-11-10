@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Poke Bank</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-</head>
-<body class="flex flex-col items-center justify-center min-h-screen bg-[#F4EFEB] font-sans">
-  <div class="flex flex-col items-center space-y-10">
+  </head>
+  <body
+    class="flex flex-col items-center justify-center min-h-screen bg-[#F4EFEB] font-sans"
+  >
+    <div class="flex flex-col items-center space-y-10">
+      <!-- Logo principal -->
+      <div class="flex flex-col items-center space-y-6">
+        <img
+          src="./images/pokemon-bank-logo.png"
+          alt="Pokémon Logo"
+          class="w-72"
+        />
+      </div>
 
-    <!-- Logo principal -->
-    <div class="flex flex-col items-center space-y-6">
-      <img src="./images/pokemon-bank-logo.png" 
-           alt="Pokémon Logo" class="w-72">
+      <!-- Campo PIN -->
+      <div class="flex flex-col items-center w-72 space-y-4">
+        <input
+          type="password"
+          placeholder="Ingrese su PIN"
+          id="txtPin"
+          class="w-full text-center border-b-2 border-gray-300 focus:outline-none focus:border-yellow-400 py-3 text-gray-600 text-lg"
+        />
+      </div>
+
+      <button id="btnLogin"
+        class="w-48 bg-[#f9a825] hover:bg-[#fbc02d] text-white text-lg font-semibold py-3 rounded-md shadow-md transition-transform transform hover:scale-105 flex items-center justify-center"
+      >
+        Ingresar
+      </button>
     </div>
 
-    <!-- Campo PIN -->
-    <div class="flex flex-col items-center w-72 space-y-4">
-      <input type="password" placeholder="Ingrese su PIN" 
-             class="w-full text-center border-b-2 border-gray-300 focus:outline-none focus:border-yellow-400 py-3 text-gray-600 text-lg" />
-    </div>
-
-    <a href="./pages/inicio.html" class="w-48 bg-[#f9a825] hover:bg-[#fbc02d] text-white text-lg font-semibold py-3 rounded-md shadow-md transition-transform transform hover:scale-105 flex items-center justify-center">
-      Ingresar
-    </a>
-  </div>
-
-</body>
+    <script src="./js/app.js"></script>
+  </body>
 </html>
