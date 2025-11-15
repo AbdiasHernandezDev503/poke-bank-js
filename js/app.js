@@ -2,61 +2,36 @@
   // Cargamos SweetAlert
   await import("/js/swal-loader.js");
 
-  // Cargaamos Firebase para
+  // Cargaamos Firebase
   await import("/js/firebase-loader.js");
 
-  const { FirebaseDB, FirebaseRef, FirebaseGet } = window;
-  // Obtenemos los elementos del DOM de la vista index.html
-  const txtPin = document.getElementById("txtPin");
-  const btnLogin = document.getElementById("btnLogin");
+  const page = document.body.dataset.page || 'default';
 
-  // Al hacer clic en ingresar, evaluar que el usuario ya exista
-  btnLogin.addEventListener("click", async () => {
-    const pinIngresado = txtPin.value.trim();
+  // Tabla de rutas → import dinámico
+  const dyn = (rel) => import(new URL(rel, import.meta.url).href);
 
-    if (!pinIngresado) {
-      swal("Advertencia", "Por favor ingrese su PIN", "warning");
+  const routes = {
+    login:        () => dyn('../js/login.js'),
+    inicio:       () => dyn('../js/inicio.js'),
+    'cantidad-retiro': () => dyn('../js/cantidad-retiro.js'),
+    'otra-cantidad-retiro':   () => dyn('../js/otra-cantidad-retiro.js'),
+  };
+
+  try {
+    const loader = routes[page];
+    if (!loader) {
+      console.warn(`No hay módulo para page="${page}".`);
       return;
     }
 
-    try {
-      const snapshot = await FirebaseGet(
-        FirebaseRef(FirebaseDB, "pokeBank/usuarios")
-      );
-      if (!snapshot.exists()) {
-        swal(
-          "Advertencia",
-          "No hay usuarios registrados en la base de datos.",
-          "warning"
-        );
-        return;
-      }
-
-      const data = snapshot.val();
-      const usuarios = Array.isArray(data)
-        ? data.filter(Boolean)
-        : Object.values(data || {});
-
-      const usuarioEncontrado = usuarios.find((u) => u?.pin === pinIngresado);
-
-      if (usuarioEncontrado) {
-        // Eliminamos el pin antes de guardar
-        const { pin, ...usuarioSinPin } = usuarioEncontrado;
-
-        // Guardamos solo la sesión sin PIN
-        localStorage.setItem("usuarioActivo", JSON.stringify(usuarioSinPin));
-
-        await swal("Bienvenido", `${usuarioSinPin.nombre}`, "success");
-        window.location.href = "./pages/inicio.html";
-      } else {
-        swal("Error", "PIN incorrecto. Intente nuevamente.", "error");
-      }
-    } catch (err) {
-      swal(
-        "Error",
-        "Hubo un problema al conectar con la base de datos.",
-        "error"
-      );
+    const mod = await loader();
+    if (typeof mod.init === 'function') {
+      await mod.init();
+    } else {
+      console.warn(`El módulo "${page}" no exporta init().`);
     }
-  });
+  } catch (err) {
+    console.error('Error cargando módulo de página:', err);
+    swal('Error', 'No se pudo cargar la página.', 'error');
+  }
 })();
