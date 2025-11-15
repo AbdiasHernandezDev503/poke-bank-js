@@ -6,10 +6,12 @@
     <title>Pokémon Bank - Historial</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between">
-    <!-- Encabezado -->
+
+  <body
+    data-page="historial"
+    class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between"
+  >
     <header class="flex justify-between items-start p-6">
-      <!-- Logo -->
       <div class="flex items-center space-x-3">
         <img
           src="../images/pokemon-bank-logo.png"
@@ -17,12 +19,11 @@
           class="w-44"
         />
       </div>
-
-      <!-- Cuenta -->
       <div class="text-right leading-tight">
         <p class="text-[#2b5ea3] font-semibold tracking-wide">CUENTA N°</p>
-        <p class="text-[#2b5ea3] font-extrabold">
-          0034840280021393
+
+        <p id="lblCuenta" class="text-[#2b5ea3] font-extrabold">
+          0000000000000000
         </p>
       </div>
     </header>
@@ -40,7 +41,9 @@
           <table class="min-w-full text-sm md:text-base">
             <thead>
               <tr class="text-left">
-                <th class="bg-[#ffb300] text-white font-semibold rounded-l-lg px-4 py-3">
+                <th
+                  class="bg-[#ffb300] text-white font-semibold rounded-l-lg px-4 py-3"
+                >
                   Fecha
                 </th>
                 <th class="bg-[#ffb300] text-white font-semibold px-4 py-3">
@@ -49,48 +52,14 @@
                 <th class="bg-[#ffb300] text-white font-semibold px-4 py-3">
                   Detalle
                 </th>
-                <th class="bg-[#ffb300] text-white font-semibold rounded-r-lg px-4 py-3 text-right">
+                <th
+                  class="bg-[#ffb300] text-white font-semibold rounded-r-lg px-4 py-3 text-right"
+                >
                   Monto
                 </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-100">
-              <!-- Fila 1 -->
-              <tr class="hover:bg-white">
-                <td class="px-4 py-4 whitespace-nowrap">02/09/2025</td>
-                <td class="px-4 py-4 whitespace-nowrap">Depósito</td>
-                <td class="px-4 py-4">Descripción</td>
-                <td class="px-4 py-4 text-right">
-                  <span class="font-semibold text-green-600">+ $250.00</span>
-                </td>
-              </tr>
-              <!-- Fila 2 -->
-              <tr class="hover:bg-white">
-                <td class="px-4 py-4 whitespace-nowrap">03/09/2025</td>
-                <td class="px-4 py-4 whitespace-nowrap">Retiro</td>
-                <td class="px-4 py-4">Descripción</td>
-                <td class="px-4 py-4 text-right">
-                  <span class="font-semibold text-red-600">- $100.00</span>
-                </td>
-              </tr>
-              <!-- Fila 3 -->
-              <tr class="hover:bg-white">
-                <td class="px-4 py-4 whitespace-nowrap">12/09/2025</td>
-                <td class="px-4 py-4 whitespace-nowrap">Pagos Servicios</td>
-                <td class="px-4 py-4">Descripción</td>
-                <td class="px-4 py-4 text-right">
-                  <span class="font-semibold text-red-600">- $35.00</span>
-                </td>
-              </tr>
-              <!-- Fila 4 -->
-              <tr class="hover:bg-white">
-                <td class="px-4 py-4 whitespace-nowrap">14/09/2025</td>
-                <td class="px-4 py-4 whitespace-nowrap">Depósito</td>
-                <td class="px-4 py-4">Descripción</td>
-                <td class="px-4 py-4 text-right">
-                  <span class="font-semibold text-green-600">+ $150.00</span>
-                </td>
-              </tr>
+            <tbody id="tbodyHistorial" class="divide-y divide-gray-100">
             </tbody>
           </table>
         </div>
@@ -99,13 +68,28 @@
 
     <!-- Botón volver -->
     <footer class="flex justify-end p-6 md:p-8">
-      <a href="consulta-saldo.html" class="text-[#2b5ea3] hover:text-[#1e3a8a] transition" title="Volver al menú">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-9 h-9" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
+      <a
+        href="consulta-saldo.html"
+        class="text-[#2b5ea3] hover:text-[#1e3a8a] transition"
+        title="Volver al menú"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-9 h-9"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"
+          />
         </svg>
       </a>
     </footer>
-  <script type="module" src="../js/app.js"></script>
+
+    <script type="module" src="../js/app.js"></script>
   </body>
 </html>

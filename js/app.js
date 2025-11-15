@@ -15,6 +15,7 @@
     inicio:       () => dyn('../js/inicio.js'),
     'cantidad-retiro': () => dyn('../js/cantidad-retiro.js'),
     'otra-cantidad-retiro':   () => dyn('../js/otra-cantidad-retiro.js'),
+    historial:        () => dyn('../js/historial.js'),
   };
 
   try {
