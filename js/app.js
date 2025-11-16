@@ -16,6 +16,9 @@
     'cantidad-retiro': () => dyn('../js/cantidad-retiro.js'),
     'otra-cantidad-retiro':   () => dyn('../js/otra-cantidad-retiro.js'),
     historial:        () => dyn('../js/historial.js'),
+    'cuenta-deposito': () => dyn('../js/cuenta-deposito.js'),
+    'cantidad-deposito': () => dyn('../js/cantidad-deposito.js'),
+    'transaccion-deposito-completa': () => dyn('../js/transaccion-deposito-completa.js'),
   };
 
   try {

@@ -1,56 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Depósito exitoso</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Depósito exitoso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-<body class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between">
+  <body
+    data-page="transaccion-deposito-completa"
+    class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between"
+  >
+    <!-- Contenedor principal -->
+    <div class="flex flex-col items-center justify-center min-h-screen px-8">
+      <!-- Logo -->
+      <img
+        src="../images/pokemon-bank-logo.png"
+        alt="Pokémon Bank"
+        class="w-40 mb-6"
+      />
 
-  <!-- Contenedor principal -->
-  <div class="flex flex-col items-center justify-center min-h-screen  px-8">
+      <!-- Título -->
+      <h2 class="text-lg md:text-xl font-semibold text-[#3952A5] mb-2">
+        Depósito exitoso
+      </h2>
 
-    <!-- Logo -->
-    <img
-      src="../images/pokemon-bank-logo.png"
-      alt="Pokémon Bank"
-      class="w-40 mb-6"
-    />
+      <!-- Check de confirmación -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2.5"
+        stroke="#2ECC71"
+        class="w-8 h-8 mb-8"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M4.5 12.75l6 6 9-13.5"
+        />
+      </svg>
 
-    <!-- Título -->
-    <h2 class="text-lg md:text-xl font-semibold text-[#3952A5] mb-2">
-      Depósito exitoso
-    </h2>
+      <!-- Detalles del depósito -->
+      <div class="text-center text-[#3952A5]">
+        <p class="font-semibold">Número de referencia</p>
+        <p id="lblRef" class="text-gray-600 mb-4">19379201</p>
 
-    <!-- Check de confirmación -->
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-         stroke-width="2.5" stroke="#2ECC71" class="w-8 h-8 mb-8">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-    </svg>
+        <p class="font-semibold">Cuenta destino</p>
+        <p id="lblCuentaDestino" class="text-gray-600 mb-4">0034840280021393</p>
 
-    <!-- Detalles del depósito -->
-    <div class="text-center text-[#3952A5]">
-      <p class="font-semibold">Número de referencia</p>
-      <p class="text-gray-600 mb-4">19379201</p>
-
-      <p class="font-semibold">Cuenta destino</p>
-      <p class="text-gray-600 mb-4">0034840280021393</p>
-
-      <p class="font-semibold">Monto</p>
-      <p class="text-gray-600">$ 100.00</p>
+        <p class="font-semibold">Monto</p>
+        <p id="lblMonto" class="text-gray-600">$ 100.00</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Flecha verde fija abajo a la derecha -->
-  <a href="../index.html"
-     class="text-[#2ECC71] hover:text-[#27AE60] transition fixed bottom-8 right-8">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-         stroke-width="2.5" stroke="currentColor" class="w-8 h-8 rotate-180">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-    </svg>
-  </a>
-  <script type="module" src="../js/app.js"></script>
-</body>
+    <!-- Flecha verde fija abajo a la derecha -->
+    <a id="btnRetorno"
+      href="../index.html"
+      class="text-[#2ECC71] hover:text-[#27AE60] transition fixed bottom-8 right-8"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2.5"
+        stroke="currentColor"
+        class="w-8 h-8 rotate-180"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+    </a>
+    <script type="module" src="../js/app.js"></script>
+  </body>
 </html>

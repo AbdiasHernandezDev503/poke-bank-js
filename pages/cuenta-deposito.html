@@ -1,53 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Depósito a cuenta corriente</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Depósito a cuenta corriente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-<body class="bg-[#F4EFEB] h-screen flex flex-col justify-center items-center overflow-hidden relative">
-
-  <!-- Usuario -->
-  <div class="absolute top-6 right-10 flex items-center space-x-3">
-    <img src="../images/pokeball.png" alt="Pokeball" class="w-12 h-12" />
-    <div class="text-right">
-      <p class="text-[#2b5ea3] font-semibold">Arron Hernandez</p>
-      <p class="text-[#2b5ea3] text-sm font-semibold">0034840280021393</p>
+  <body data-page="cuenta-deposito"
+    class="bg-[#F4EFEB] h-screen flex flex-col justify-center items-center overflow-hidden relative"
+  >
+    <!-- Usuario -->
+    <div class="absolute top-6 right-10 flex items-center space-x-3">
+      <img src="../images/pokeball.png" alt="Pokeball" class="w-12 h-12" />
+      <div class="text-right">
+        <p class="text-[#2b5ea3] font-semibold">Arron Hernandez</p>
+        <p class="text-[#2b5ea3] text-sm font-semibold">0034840280021393</p>
+      </div>
     </div>
-  </div>
 
-  <!-- Contenido principal centrado -->
-  <div class="flex flex-col items-center justify-center text-center">
-    <h2 class="text-lg md:text-xl font-semibold text-[#3952A5] mb-10">
-      Ingrese la cuenta a la cual desea depositar.
-    </h2>
+    <!-- Contenido principal centrado -->
+    <div class="flex flex-col items-center justify-center text-center">
+      <h2 class="text-lg md:text-xl font-semibold text-[#3952A5] mb-10">
+        Ingrese la cuenta a la cual desea depositar.
+      </h2>
 
-    <!-- Campo de entrada -->
-    <input
-      type="text"
-      placeholder="Ingrese la cuenta"
-      class="border border-[#2ECC71] rounded-md px-4 py-2 w-64 text-center focus:outline-none focus:ring-2 focus:ring-[#2ECC71] mb-8"
-    />
+      <!-- Campo de entrada -->
+      <input
+        id="txtCuentaDestino"
+        type="text"
+        placeholder="Ingrese la cuenta"
+        class="border border-[#2ECC71] rounded-md px-4 py-2 w-64 text-center focus:outline-none focus:ring-2 focus:ring-[#2ECC71] mb-8"
+      />
 
-    <!-- Botón aceptar -->
+      <!-- Botón aceptar -->
+      <button
+        id="btnValidarCuenta"
+        class="bg-[#2ECC71] hover:bg-[#27AE60] text-white font-semibold py-2 px-8 rounded-md shadow-md transition text-center"
+      >
+        Aceptar
+      </button>
+    </div>
+
+    <!-- Flecha verde fija abajo a la derecha -->
     <a
-      href="cantidad-deposito.html"
-      class="bg-[#2ECC71] hover:bg-[#27AE60] text-white font-semibold py-2 px-8 rounded-md shadow-md transition text-center"
+      href="inicio.html"
+      class="text-[#2ECC71] hover:text-[#27AE60] transition absolute bottom-6 right-6"
     >
-      Aceptar
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2.5"
+        stroke="currentColor"
+        class="w-8 h-8 rotate-180"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
     </a>
-  </div>
-
-  <!-- Flecha verde fija abajo a la derecha -->
-  <a href="inicio.html"
-     class="text-[#2ECC71] hover:text-[#27AE60] transition absolute bottom-6 right-6">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-         stroke-width="2.5" stroke="currentColor" class="w-8 h-8 rotate-180">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-    </svg>
-  </a>
-  <script type="module" src="../js/app.js"></script>
-</body>
+    <script type="module" src="../js/app.js"></script>
+  </body>
 </html>

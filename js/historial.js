@@ -1,13 +1,16 @@
 export async function init() {
   const { FirebaseDB, FirebaseRef, FirebaseGet } = window;
 
-  const tbody = document.getElementById('tbodyHistorial');
-  const lblCuenta = document.getElementById('lblCuenta');
+  const tbody = document.getElementById("tbodyHistorial");
+  const lblCuenta = document.getElementById("lblCuenta");
 
-  const usuarioLS = JSON.parse(localStorage.getItem('usuarioActivo') || 'null');
+  const usuarioLS = JSON.parse(localStorage.getItem("usuarioActivo") || "null");
   if (!usuarioLS || !usuarioLS.cuenta) {
-    swal("Advertencia", "Sesión no válida. Inicie sesión nuevamente.", "warning")
-      .then(() => (window.location.href = "../index.html"));
+    swal(
+      "Advertencia",
+      "Sesión no válida. Inicie sesión nuevamente.",
+      "warning"
+    ).then(() => (window.location.href = "../index.html"));
     return;
   }
 
@@ -17,18 +20,25 @@ export async function init() {
 
   try {
     // Obtener todos los usuarios
-    const snap = await FirebaseGet(FirebaseRef(FirebaseDB, "pokeBank/usuarios"));
+    const snap = await FirebaseGet(
+      FirebaseRef(FirebaseDB, "pokeBank/usuarios")
+    );
     if (!snap.exists()) {
       pintarFilaVacia(tbody, "No hay transacciones registradas.");
       return;
     }
 
     const data = snap.val();
-    const usuarios = Array.isArray(data) ? data.filter(Boolean) : Object.values(data || {});
-    const usuario = usuarios.find(u => u?.cuenta === usuarioLS.cuenta);
+    const usuarios = Array.isArray(data)
+      ? data.filter(Boolean)
+      : Object.values(data || {});
+    const usuario = usuarios.find((u) => u?.cuenta === usuarioLS.cuenta);
 
     if (!usuario) {
-      pintarFilaVacia(tbody, "Usuario no encontrado. Inicie sesión nuevamente.");
+      pintarFilaVacia(
+        tbody,
+        "Usuario no encontrado. Inicie sesión nuevamente."
+      );
       return;
     }
 
@@ -50,31 +60,54 @@ export async function init() {
     });
 
     tbody.innerHTML = "";
-    trans.forEach(tx => {
-      const tr = document.createElement('tr');
+    trans.forEach((tx) => {
+      const tr = document.createElement("tr");
       tr.className = "border-b last:border-b-0";
 
       const fecha = formatFecha(tx.fechaISO);
       const tipo = tx.tipo || "N/A";
-      const detalle = tx.detalle || "Descripción";
       const monto = Number(tx.monto || 0);
 
-      const isDeposito = tipo.toLowerCase().includes("dep");
-      const sign = isDeposito ? "+ " : "- ";
-      const colorMonto = isDeposito ? "text-green-600" : "text-red-500";
+      // 🔹 Normalizamos tipo a minúsculas para evaluar
+      const t = tipo.toLowerCase();
+
+      // 🔹 Tipos que son ENTRADA (+, verde)
+      const esEntrada =
+        t.includes("depósito") || // por si usas tilde
+        t.includes("deposito") || // depósito normal
+        t === "transferencia-entrada"; // lo que viene de otra cuenta
+
+      // 🔹 Tipos que son SALIDA (-, rojo)
+      const esSalida =
+        t.includes("retiro") ||
+        t.includes("pago") ||
+        t === "transferencia-salida";
+
+      let sign = "";
+      let colorMonto = "text-gray-700";
+
+      if (esEntrada) {
+        sign = "+ ";
+        colorMonto = "text-green-600";
+      } else if (esSalida) {
+        sign = "- ";
+        colorMonto = "text-red-500";
+      } else {
+        // Si no cae en ninguno, lo dejamos neutro
+        sign = "";
+        colorMonto = "text-gray-700";
+      }
 
       tr.innerHTML = `
         <td class="py-3 px-6 whitespace-nowrap">${fecha}</td>
         <td class="py-3 px-6">${capitalizar(tipo)}</td>
-        <td class="py-3 px-6">${detalle}</td>
         <td class="py-3 px-6 text-right font-semibold ${colorMonto}">
-          ${sign} $${monto.toFixed(2)}
+          ${sign}$${monto.toFixed(2)}
         </td>
       `;
 
       tbody.appendChild(tr);
     });
-
   } catch (err) {
     console.error("Error cargando historial:", err);
     pintarFilaVacia(tbody, "No se pudo cargar el historial.");
