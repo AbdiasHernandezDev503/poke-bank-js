@@ -22,6 +22,7 @@
     "transaccion-deposito-completa": () =>
       dyn("../js/transaccion-deposito-completa.js"),
     "consulta-saldo": () => dyn("./consulta-saldo.js"),
+     grafico: () => dyn("../js/grafico.js"),
   };
 
   try {

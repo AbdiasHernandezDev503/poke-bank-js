@@ -5,19 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pokémon Bank — Gráfico de transacciones</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js (global) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="min-h-screen bg-[#F4EFEB] text-slate-800">
+<body
+  class="min-h-screen bg-[#F4EFEB] text-slate-800"
+  data-page="grafico"
+>
 
   <!-- Header -->
   <header class="flex items-center justify-between px-5 sm:px-8 lg:px-12 py-5">
     <div class="flex items-center gap-3">
-      <!-- LOGO MÁS GRANDE -->
+      <!-- LOGO -->
       <img src="../images/pokemon-bank-logo.png" alt="Pokémon Bank"
            class="h-14 sm:h-16 lg:h-20 w-auto" />
     </div>
     <div class="text-right">
       <p class="text-[10px] sm:text-xs font-semibold text-neutral-600 tracking-wide">CUENTA N°</p>
-      <p class="text-[11px] sm:text-sm font-semibold text-[#3952A5]">0034840280021393</p>
+      <!-- Aquí se llenará la cuenta desde JS -->
+      <p id="lblNumeroCuenta"
+         class="text-[11px] sm:text-sm font-semibold text-[#3952A5]">
+        <!-- Se rellena dinámicamente -->
+      </p>
     </div>
   </header>
 
@@ -29,49 +39,39 @@
   <!-- Contenido principal -->
   <main class="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-[1fr_420px] gap-8 px-5 sm:px-8 lg:px-12 py-8 place-items-center">
 
-    <!-- Tarjeta del donut -->
+    <!-- Tarjeta del gráfico (Chart.js) -->
     <section class="w-full max-w-[600px] rounded-2xl bg-white p-6 shadow-sm border border-neutral-200">
       <div class="mx-auto relative"
            style="width: clamp(240px, 48vw, 360px); height: clamp(240px, 48vw, 360px);">
-        <!-- Donut -->
-        <div class="w-full h-full rounded-full"
-             style="background-image: conic-gradient(#3952A5 0% 40%, #E53935 40% 75%, #F7AD1A 75% 100%);">
-        </div>
-
-        <!-- Hueco central -->
-        <div class="absolute inset-0 m-auto bg-white rounded-full"
-             style="width: 46%; height: 46%;"></div>
-
-        <!-- Etiquetas centradas dentro de cada sector -->
-        <!-- 40% — Depósitos (ángulo medio entre 0° y 144° → ~72°) -->
-        <span class="absolute text-white drop-shadow font-semibold text-xs sm:text-sm"
-              style="left: 76%; top: 36%; transform: translate(-50%, -50%);"></span>
-
-        <!-- 35% — Retiros (ángulo medio entre 144° y 270° → ~207°) -->
-        <span class="absolute text-white drop-shadow font-semibold text-xs sm:text-sm"
-              style="left: 35%; top: 78%; transform: translate(-50%, -50%);"></span>
-
-        <!-- 25% — Pagos de servicios (ángulo medio entre 270° y 360° → ~315°) -->
-        <span class="absolute text-white drop-shadow font-semibold text-xs sm:text-sm"
-              style="left: 72%; top: 76%; transform: translate(-50%, -50%);"></span>
+        <!-- Canvas para Chart.js -->
+        <canvas id="graficoMovimientos"></canvas>
       </div>
     </section>
 
-    <!-- Leyenda -->
+    <!-- Leyenda / Resumen -->
     <aside class="w-full lg:w-auto rounded-2xl bg-white/80 backdrop-blur p-5 shadow-sm border border-neutral-200">
       <p class="text-sm font-semibold text-neutral-600 mb-3">Resumen</p>
       <ul class="space-y-3 text-sm">
         <li class="flex items-center gap-3">
           <span class="inline-block size-3 rounded-full" style="background:#3952A5;"></span>
-          <span>Depósitos - <span class="font-medium">40%</span></span>
+          <span>
+            Depósitos -
+            <span id="lblTotalDepositos" class="font-medium">$0.00</span>
+          </span>
         </li>
         <li class="flex items-center gap-3">
           <span class="inline-block size-3 rounded-full" style="background:#E53935;"></span>
-          <span>Retiros - <span class="font-medium">35%</span></span>
+          <span>
+            Retiros -
+            <span id="lblTotalRetiros" class="font-medium">$0.00</span>
+          </span>
         </li>
         <li class="flex items-center gap-3">
           <span class="inline-block size-3 rounded-full" style="background:#F7AD1A;"></span>
-          <span>Pagos de servicios - <span class="font-medium">25%</span></span>
+          <span>
+            Pagos de servicios -
+            <span id="lblTotalServicios" class="font-medium">$0.00</span>
+          </span>
         </li>
       </ul>
     </aside>
@@ -80,11 +80,13 @@
   <!-- Botón flotante -->
   <a href="inicio.html"
      class="fixed bottom-6 right-6 md:bottom-8 md:right-8 grid place-items-center size-12 rounded-full bg-white text-[#3952A5] border border-neutral-200 shadow-md hover:shadow-lg active:scale-95 transition"
-     aria-label="Siguiente">
+     aria-label="Volver al inicio">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
     </svg>
   </a>
+
+  <!-- Router general de la app -->
   <script type="module" src="../js/app.js"></script>
 </body>
 </html>
