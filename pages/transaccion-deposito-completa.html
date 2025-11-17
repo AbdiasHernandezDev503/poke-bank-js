@@ -7,12 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body
-    data-page="transaccion-deposito-completa"
-    class="bg-[#F4EFEB] min-h-screen flex flex-col justify-between"
-  >
+<body
+  data-page="transaccion-deposito-completa"
+  class="bg-[#F4EFEB] min-h-screen flex flex-col items-center justify-center"
+>
     <!-- Contenedor principal -->
-    <div class="flex flex-col items-center justify-center min-h-screen px-8">
+    <div id="comprobante" class="flex flex-col items-center px-8 pb-10">
+
       <!-- Logo -->
       <img
         src="../images/pokemon-bank-logo.png"
@@ -54,26 +55,153 @@
       </div>
     </div>
 
+<!-- Botón Imprimir comprobante -->
+      <div class="mt-6 flex justify-center w-full">
+        <button
+          id="btnImprimirPdf"
+          class="w-64
+                 flex items-center justify-center gap-3
+                 bg-[#ff9800] hover:bg-[#f48b00]
+                 text-white font-semibold
+                 py-3 px-6
+                 rounded-xl
+                 shadow-md hover:shadow-lg
+                 transition"
+        >
+          <!-- Ícono impresora -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 9V4h12v5M6 18H5a2 2 0 01-2-2v-4a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2h-1m-12 0h12v3H6v-3z"
+            />
+          </svg>
+          <span>Imprimir comprobante</span>
+        </button>
+      </div>
+    </div>
+
     <!-- Flecha verde fija abajo a la derecha -->
-    <a id="btnRetorno"
-      href="../index.html"
-      class="text-[#2ECC71] hover:text-[#27AE60] transition fixed bottom-8 right-8"
+  <a
+    id="btnRetorno"
+    href="../index.html"
+    class="fixed bottom-8 right-8 flex items-center justify-center
+           w-12 h-12 rounded-full border border-green-400
+           text-green-500 hover:bg-green-50 hover:text-green-600
+           transition shadow-md"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      class="w-6 h-6 rotate-180"
     >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="2.5"
-        stroke="currentColor"
-        class="w-8 h-8 rotate-180"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M15 19l-7-7 7-7"
-        />
-      </svg>
-    </a>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M15 19l-7-7 7-7"
+      />
+    </svg>
+  </a>
+
+      <!-- Librerías para el PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- Lógica SOLO de esta página-->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const comprobante = document.getElementById("comprobante");
+        const btnImprimir = document.getElementById("btnImprimirPdf");
+
+        if (!comprobante || !btnImprimir) {
+          console.error("No se encontró el comprobante o el botón");
+          return;
+        }
+
+        btnImprimir.addEventListener("click", function () {
+          // Validar librerías
+          if (typeof html2canvas === "undefined" || !window.jspdf) {
+            console.error("Faltan html2canvas o jsPDF");
+            alert("No se pudo generar el comprobante en PDF.");
+            return;
+          }
+
+          const jsPDF = window.jspdf.jsPDF;
+
+          // Capturar el comprobante como imagen 
+          html2canvas(comprobante, {
+            scale: 3,
+            backgroundColor: "#F4EFEB",
+          })
+            .then(function (canvas) {
+              const imgData = canvas.toDataURL("image/png");
+
+              // Crear PDF tamaño A4
+              const pdf = new jsPDF("p", "mm", "a4");
+              const pageWidth = pdf.internal.pageSize.getWidth();
+              const pageHeight = pdf.internal.pageSize.getHeight();
+
+              //Margenes
+              const marginX = 20; 
+              const marginY = 20;
+              const maxWidth = pageWidth - marginX * 2;
+              const maxHeight = pageHeight - marginY * 2;
+
+              // Escalar principalmente por ancho
+              let ratio = maxWidth / canvas.width;
+              const scaledHeight = canvas.height * ratio;
+
+              // Si al ensanchar se pasa de alto, se ajusta lo alto
+              if (scaledHeight > maxHeight) {
+                ratio = maxHeight / canvas.height;
+              }
+
+              const imgWidth = canvas.width * ratio;
+              const imgHeight = canvas.height * ratio;
+
+              const posX = (pageWidth - imgWidth) / 2;
+              const posY = (pageHeight - imgHeight) / 2;
+
+              pdf.addImage(
+                imgData,
+                "PNG",
+                posX,
+                posY,
+                imgWidth,
+                imgHeight,
+                undefined,
+                "FAST"
+              );
+
+              const ref = localStorage.getItem("compRef") || "pokebank";
+              pdf.save("comprobante-deposito-" + ref + ".pdf");
+            })
+            .catch(function (err) {
+              console.error("Error al generar el PDF:", err);
+              if (typeof swal === "function") {
+                swal(
+                  "Error",
+                  "No se pudo generar el comprobante en PDF.",
+                  "error"
+                );
+              } else {
+                alert("No se pudo generar el comprobante en PDF.");
+              }
+            });
+        });
+      });
+    </script>
+
     <script type="module" src="../js/app.js"></script>
   </body>
 </html>

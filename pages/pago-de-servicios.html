@@ -71,14 +71,37 @@
 
         <!-- Botón -->
         <div class="sm:col-span-2 flex justify-between items-center mt-4">
-            <button type="button"
-                    onclick="window.location.href='pago-servicios-completo.html'"
-                    class="bg-[#47C4B1] hover:bg-[#38B3A1] text-white font-semibold px-6 py-2 rounded-lg transition">
-                Pagar ahora
-            </button>
-          <a href="inicio.html" class="text-[#3952A5] text-2xl hover:translate-x-1 transition">&#10140;</a>
-        </div>
-
+          <button type="submit"
+                  class="bg-[#47C4B1] hover:bg-[#38B3A1] text-white font-semibold px-6 py-2 rounded-lg transition">
+            Pagar ahora
+          </button>
+          
+        <!-- Flecha en círculo abajo a la derecha del card -->
+        <a
+          href="inicio.html"
+          title="Volver al menú"
+          class="flex items-center justify-center
+                w-12 h-12 rounded-full
+                border border-[#3952A5] text-[#3952A5]
+                hover:bg-[#eef3ff] hover:text-[#3952A5]
+                transition shadow-md"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          />
+        </svg>
+      </a>
+</div>
       </form>
     </div>
   </div>
