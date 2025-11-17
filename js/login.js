@@ -1,7 +1,8 @@
 export async function init() {
   const { FirebaseDB, FirebaseRef, FirebaseGet } = window;
 
-  // Remover usuarioActivo de localstorage ya que al dirigir se entiende que esta iniciando sesion o cerro sesion
+  // Remover usuarioActivo de localstorage 
+  // ya que al dirigir se entiende que esta iniciando sesion o cerro sesion
   localStorage.removeItem("usuarioActivo")
 
   // Obtenemos los elementos del DOM de la vista index.html

@@ -68,16 +68,16 @@ export async function init() {
       const tipo = tx.tipo || "N/A";
       const monto = Number(tx.monto || 0);
 
-      // 🔹 Normalizamos tipo a minúsculas para evaluar
+      // Normalizamos tipo a minúsculas para evaluar
       const t = tipo.toLowerCase();
 
-      // 🔹 Tipos que son ENTRADA (+, verde)
+      // Tipos que son ENTRADA (+, verde)
       const esEntrada =
         t.includes("depósito") || // por si usas tilde
         t.includes("deposito") || // depósito normal
         t === "transferencia-entrada"; // lo que viene de otra cuenta
 
-      // 🔹 Tipos que son SALIDA (-, rojo)
+      // Tipos que son SALIDA (-, rojo)
       const esSalida =
         t.includes("retiro") ||
         t.includes("pago") ||
@@ -138,3 +138,8 @@ function formatFecha(fechaISO) {
 function capitalizar(txt = "") {
   return txt.charAt(0).toUpperCase() + txt.slice(1);
 }
+
+window.addEventListener("usuario-updated", () => {
+  init();
+});
+
