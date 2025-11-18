@@ -117,7 +117,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-    <!-- Lógica SOLO de esta página-->
+    <!-- Lógica para pdf-->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const comprobante = document.getElementById("comprobante");
@@ -129,6 +129,7 @@
         }
 
         btnImprimir.addEventListener("click", function () {
+          
           // Validar librerías
           if (typeof html2canvas === "undefined" || !window.jspdf) {
             console.error("Faltan html2canvas o jsPDF");
@@ -146,7 +147,7 @@
             .then(function (canvas) {
               const imgData = canvas.toDataURL("image/png");
 
-              // Crear PDF tamaño A4
+              // Crear PDF 
               const pdf = new jsPDF("p", "mm", "a4");
               const pageWidth = pdf.internal.pageSize.getWidth();
               const pageHeight = pdf.internal.pageSize.getHeight();

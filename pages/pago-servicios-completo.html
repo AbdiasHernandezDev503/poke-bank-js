@@ -7,11 +7,23 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body data-page="pago-servicios-completo"
+      <body data-page="pago-servicios-completo"
       class="bg-[#F4EFEB] min-h-screen flex flex-col item-center justify-center">
+
     <!-- Contenedor principal -->
     <div class="flex flex-col items-center px-8 pb-10">
-        <!-- Logo -->
+       
+    <!-- Tarjeta del comprobante en el pdf-->
+    <div
+      id="comprobante"
+      class="bg-[#FDF8F6]
+             rounded-xl shadow-md
+             px-10 py-8
+             max-w-[320px] w-full
+             flex flex-col items-center"
+       >
+
+      <!-- Logo -->
         <img src="../images/pokemon-bank-logo.png"
              alt="Pokémon Bank"
              class="w-40 mb-6" />
@@ -34,8 +46,7 @@
         </svg>
 
         <!-- Detalles del pago de servicios -->
-        <div class="text-center text-[#3952A5] space-y-2">
-
+            <div class="text-center text-[#3952A5] space-y-2">
             <div>
                 <p class="font-semibold">Servicio</p>
                 <p id="lblServicio" class="text-gray-600 mb-2">Electricidad</p>
@@ -123,6 +134,106 @@
       />
     </svg>
   </a>
+
+   <!-- Librerías para el PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Lógica para generar el PDF-->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const comprobante = document.getElementById("comprobante");
+      const btnImprimir = document.getElementById("btnImprimirPdf");
+
+      if (!comprobante || !btnImprimir) {
+        console.error("No se encontró el comprobante o el botón");
+        return;
+      }
+
+      btnImprimir.addEventListener("click", function () {
+        
+        // Validar librerías
+        if (typeof html2canvas === "undefined" || !window.jspdf) {
+          console.error("Faltan html2canvas o jsPDF");
+          alert("No se pudo generar el comprobante en PDF.");
+          return;
+        }
+
+        const jsPDF = window.jspdf.jsPDF;
+
+        // Capturar el comprobante como imagen
+        html2canvas(comprobante, {
+          scale: 3,
+          backgroundColor: "#F4EFEB",
+        })
+          .then(function (canvas) {
+            const imgData = canvas.toDataURL("image/png");
+
+            // PDF tamaño 
+            const pdf = new jsPDF("p", "mm", "a4");
+            const pageWidth = pdf.internal.pageSize.getWidth();
+            const pageHeight = pdf.internal.pageSize.getHeight();
+
+            const marginX = 20;
+            const marginY = 20;
+            const maxWidth = pageWidth - marginX * 2;
+            const maxHeight = pageHeight - marginY * 2;
+
+            let ratio = maxWidth / canvas.width;
+            const scaledHeight = canvas.height * ratio;
+
+            if (scaledHeight > maxHeight) {
+              ratio = maxHeight / canvas.height;
+            }
+
+            const imgWidth = canvas.width * ratio;
+            const imgHeight = canvas.height * ratio;
+
+            const posX = (pageWidth - imgWidth) / 2;
+            const posY = (pageHeight - imgHeight) / 2;
+
+            pdf.addImage(
+              imgData,
+              "PNG",
+              posX,
+              posY,
+              imgWidth,
+              imgHeight,
+              undefined,
+              "FAST"
+            );
+
+            // Referencia desde localStorage.ultimoPagoServicio
+            let ref = "pokebank";
+            const rawPago = localStorage.getItem("ultimoPagoServicio");
+            if (rawPago) {
+              try {
+                const pago = JSON.parse(rawPago);
+                if (pago.referencia) {
+                  ref = pago.referencia;
+                }
+              } catch (e) {
+                console.warn("No se pudo parsear ultimoPagoServicio:", e);
+              }
+            }
+
+            pdf.save("comprobante-pago-servicio-" + ref + ".pdf");
+          })
+          .catch(function (err) {
+            console.error("Error al generar el PDF:", err);
+            if (typeof swal === "function") {
+              swal(
+                "Error",
+                "No se pudo generar el comprobante en PDF.",
+                "error"
+              );
+            } else {
+              alert("No se pudo generar el comprobante en PDF.");
+            }
+          });
+      });
+    });
+  </script>
 
     <script type="module" src="../js/app.js"></script>
 </body>
