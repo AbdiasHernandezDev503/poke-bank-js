@@ -12,19 +12,19 @@
   const dyn = (rel) => import(new URL(rel, import.meta.url).href);
 
   const routes = {
-    login: () => dyn("../js/login.js"),
-    inicio: () => dyn("../js/inicio.js"),
-    "cantidad-retiro": () => dyn("../js/cantidad-retiro.js"),
-    "otra-cantidad-retiro": () => dyn("../js/otra-cantidad-retiro.js"),
-    historial: () => dyn("../js/historial.js"),
-    "cuenta-deposito": () => dyn("../js/cuenta-deposito.js"),
-    "cantidad-deposito": () => dyn("../js/cantidad-deposito.js"),
+    login: () => dyn("./login.js"),
+    inicio: () => dyn("./inicio.js"),
+    "cantidad-retiro": () => dyn("./cantidad-retiro.js"),
+    "otra-cantidad-retiro": () => dyn("./otra-cantidad-retiro.js"),
+    historial: () => dyn("./historial.js"),
+    "cuenta-deposito": () => dyn("./cuenta-deposito.js"),
+    "cantidad-deposito": () => dyn("./cantidad-deposito.js"),
     "transaccion-deposito-completa": () =>
-      dyn("../js/transaccion-deposito-completa.js"),
+      dyn("./transaccion-deposito-completa.js"),
     "consulta-saldo": () => dyn("./consulta-saldo.js"),
-    grafico: () => dyn("../js/grafico.js"),
-    "pago-servicios": () => dyn("../js/pago-servicio.js"),
-    "pago-servicios-completo": () => dyn("../js/pago-servicios-completo.js"),
+    grafico: () => dyn("./grafico.js"),
+    "pago-servicios": () => dyn("./pago-servicio.js"),
+    "pago-servicios-completo": () => dyn("./pago-servicios-completo.js"),
   };
 
   try {
@@ -89,7 +89,8 @@ function iniciarWatcherTiempoReal() {
       localStorage.setItem("usuarioActivo", JSON.stringify(sinPin));
       window.dispatchEvent(new Event("usuario-updated"));
 
-      console.log("usuarioActivo actualizado en tiempo real:", sinPin);
+      // -- Descomentarr solo para efectos de debuguear jamas para producción
+      // console.log("usuarioActivo actualizado en tiempo real:", sinPin);
     });
   });
 }
